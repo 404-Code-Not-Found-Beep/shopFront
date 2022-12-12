@@ -9,20 +9,26 @@ import { Item } from './item';
 export class ItemService {
   private url = 'http://localhost:5200';
   private items$: Subject<Item[]> = new Subject();
-  
+  // private items : Item[] = [];
   constructor(private httpClient: HttpClient) { }
   
-  private refreshItems() {
-    this.httpClient.get<Item[]>(`${this.url}/items`)
+  private refreshItems(url:string) {
+    this.httpClient.get<Item[]>(`${this.url}/${url}`)
       .subscribe(items => {
         this.items$.next(items);
+        // this.items = items;
       });
   }
   
-  getItems(): Subject<Item[]> {
-    this.refreshItems();
-    return this.items$;
+  getItems_Observable(url:string): Subject<Item[]> {
+    this.refreshItems(url);
+    return this.items$; 
   }
+
+  // getItems_Array(): Item[]{
+  //   this.refreshItems;
+  //   return this.items;
+  // }
   
   getItem(id: string): Observable<Item> {
     return this.httpClient.get<Item>(`${this.url}/items/${id}`);

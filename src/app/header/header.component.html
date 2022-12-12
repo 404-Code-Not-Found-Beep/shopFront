@@ -19,14 +19,26 @@
             <!-- <li class="nav-item">
               <a class="nav-link" href="#">Items</a>
             </li> -->
-            <li routerLinkActive="active"><a class="nav-link" routerLink="/items">items</a></li>
+            <li routerLinkActive="active"><a class="nav-link" routerLink="/items">Items</a></li>
+            <li routerLinkActive="active"><a class="nav-link" routerLink="/checkout">Checkout</a></li>
+              <!-- <li class="dropdown" appDropdown>
+              <a style="cursor: pointer" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                      <li><a style="cursor: pointer" >save data</a></li>
+                      <li><a style="cursor: pointer"  >fetch data</a></li>
+
+                  </ul>
+              </li> -->
+          </ul>
             <!-- <li class="nav-item">
               <a class="nav-link" href="#">Pricing</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">About</a>
             </li> -->
-          </ul>
+          
+          <app-search-bar></app-search-bar>
+          <app-cart-icon></app-cart-icon>
         </div>
       </div>
     </nav>

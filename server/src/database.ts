@@ -3,7 +3,8 @@ import {Item} from "./items";
 
  
 export const collections: {
-   items?: mongodb.Collection<Item>;
+   Shirts?: mongodb.Collection<Item>;
+   books?: mongodb.Collection<Item>;
 } = {};
  
 export async function connectToDatabase(uri: string) {
@@ -13,8 +14,10 @@ export async function connectToDatabase(uri: string) {
    const db = client.db("shopItems");
    await applySchemaValidation(db);
  
-   const itemsCollection = db.collection<Item>("items");
-   collections.items = itemsCollection;
+   const shirtsCollection = db.collection<Item>("Shirts");
+   collections.Shirts = shirtsCollection;
+   const booksCollection = db.collection<Item>("books");
+   collections.books = booksCollection;
 }
  
 // Update our existing collection with JSON schema validation so we know our documents will always match the shape of our Employee model, even if added elsewhere.

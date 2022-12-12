@@ -1,0 +1,20 @@
+<p-carousel 
+  [value]="items"
+  styleClass="custom-carousel"
+  [numVisible]="3"
+  [numScroll]="1"
+  [circular]="true"
+  [autoplayInterval]="3000"
+  [responsiveOptions]="responsiveOptions"
+>
+  <!-- <ng-template pTemplate="header">
+    <h5>Circular, AutoPlay, 3 Items per Page and Scroll by 1</h5>
+  </ng-template> -->
+  <ng-template let-product pTemplate="item">
+    <div (click)="onClick(product)">
+      <h4>{{ product.name }}</h4>
+      <h6 class="p-mt-0 p-mb-3">£{{product.price}}</h6>
+      <img width="200" src={{product.url}} alt="">
+    </div>
+  </ng-template>
+</p-carousel>
