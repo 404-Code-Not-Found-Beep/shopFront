@@ -2,6 +2,8 @@ import { Observable } from 'rxjs';
 import { Item } from '../item';
 import { ItemService } from '../item.service';
 import { Component, OnInit } from '@angular/core';
+import { CartService } from '../cart/cart.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,11 +12,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./carousel.component.css']
 })
 export class CarouselComponent implements OnInit {
-  // items$: Observable<Item[]> = new Observable();
   items : Item[] = [];
 	responsiveOptions;
+  size:string = '';
 
-	constructor(private itemsService: ItemService) { 
+	constructor(private itemsService: ItemService, private cartService: CartService, private router: Router) { 
 		this.responsiveOptions = [
             {
                 breakpoint: '1024px',
@@ -46,8 +48,16 @@ export class CarouselComponent implements OnInit {
    this.itemsService.getItems_Observable(url).subscribe(items => { this.items = items });
  }
 
- onClick(product:any){
+ quickAdd(product:any, size?:string){
+  this.cartService.onAddToCart(product, 1, size)
   console.log(product);
+ }
+ nav(product:any){
+  if(product.price > 15){
+    this.router.navigate(['/shirts']);
+  } else{
+    this.router.navigate(['/books']);
+  }
  }
 }
  

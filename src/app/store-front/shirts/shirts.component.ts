@@ -12,6 +12,8 @@ import { CartService } from 'src/app/cart/cart.service';
 })
 export class ShirtsComponent {
   items$: Observable<Item[]> = new Observable();
+  quant : number = 1;
+  size: string = "S";
  
   constructor(private itemsService: ItemService, private router: Router, private cartService: CartService) { }
   
@@ -23,8 +25,9 @@ export class ShirtsComponent {
     let url = "items/shirts"
     this.items$ = this.itemsService.getItems_Observable(url);
   }
-  onAddToCart(item:any){
-    this.cartService.onAddToCart(item);
+  onAddToCart(item:any, quant: number, size: string){
+    this.cartService.onAddToCart(item, quant, size);
+    console.log(item, quant, size);
   }
   
 }

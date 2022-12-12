@@ -10,8 +10,10 @@ flex-wrap: wrap">
             type="number"
             [(ngModel)]="quant"
             name="quant"
-            [defaultValue]="1">
+            [defaultValue]="1"
+            min="1">
             <button class="btn btn-primary m-3" (click)="onAddToCart(item, quant)" >Add to cart</button>
         </div>
     </div>
+    
 </div>

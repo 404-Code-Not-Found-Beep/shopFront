@@ -13,7 +13,7 @@ import { CartService } from 'src/app/cart/cart.service';
 export class BooksComponent {
   items$: Observable<Item[]> = new Observable();
   quant = 1;
- 
+  
   constructor(private itemsService: ItemService, private router: Router, private cartService: CartService) { }
   
   ngOnInit(): void {
@@ -26,8 +26,8 @@ export class BooksComponent {
   }
 
   onAddToCart(item:any, quant:number){
-    this.cartService.onAddToCart(item);
+    this.cartService.onAddToCart(item, quant);
     console.log(item, quant);
   }
-  
+ 
 }
