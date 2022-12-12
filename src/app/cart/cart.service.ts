@@ -13,7 +13,11 @@ export class CartService {
   itemsArray : Item[] = [];
   constructor() { }
 
-  onAddToCart(item: Item){
+  onAddToCart(item: Item, quant: number, size? : string){
+    if(size){
+      item.size= size;
+    } 
+    item.quantity = quant;
     this.itemsArray.push(item);
     console.log(this.itemsArray);
     this.currentCartTotal += +item.price;
@@ -25,5 +29,13 @@ export class CartService {
   getCurrentCartTotal(){
     return this.currentCartTotal;
   }
-  clearCart(){}
+  // clearCart(){
+  //   return this.itemsArray = [];
+  //   return this.currentCartTotal = 0;
+  // }
+
+  // deleteItem(_id: string){
+  //   // return this.itemsArray.splice(this.itemsArray._id, 1);
+  //   console.log(this.itemsArray, _id);
+  // }
 }
