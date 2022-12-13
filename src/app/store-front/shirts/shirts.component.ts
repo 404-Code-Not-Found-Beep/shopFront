@@ -27,7 +27,6 @@ export class ShirtsComponent {
   }
   onAddToCart(item:any, quant: number, size: string){
     this.cartService.onAddToCart(item, quant, size);
-    console.log(item, quant, size);
   }
   
 }

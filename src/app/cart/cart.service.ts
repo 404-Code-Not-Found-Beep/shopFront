@@ -11,44 +11,66 @@ import { CurrentCartModel } from './current-cart.model';
 export class CartService {
   itemsChangedSubject = new Subject<Item[]>();
 
-  currentCartTotal: number = 0;
+  // currentCartTotal: number = 0;
   itemsArray : Item[] = [];
   constructor() { }
 
   onAddToCart(item: Item, quant: number, size? : string){
+    let itemToAdd = JSON.parse(JSON.stringify(item));
     if(size){
-      item.size= size;
+      itemToAdd.size = size;
     } 
-    // if any of the items in cart have the same id then make quantity +1 else 
-    item.quantity = quant;
-    this.itemsArray.push(item);
-    this.currentCartTotal += +item.price;
-    this.itemsChangedSubject.next(this.itemsArray.slice());
+    let index = this.itemsArray.findIndex(x => x._id === itemToAdd._id && x.size === itemToAdd.size);
+    if (index !== -1){
+      this.itemsArray[index].quantity += quant;
+    this.itemsChangedSubject.next(this.itemsArray);
+
+      return;
+    } else
+    itemToAdd.quantity = quant;
+    this.itemsArray.push(itemToAdd);
+    this.itemsChangedSubject.next(this.itemsArray);
   }
 
   getCurrentCart(){
-    return this.itemsArray.slice();
+    return this.itemsArray;
   }
 
   getCurrentCartTotal(){
-    return this.currentCartTotal;
+    let total = 0;
+    for (let i of this.itemsArray) {
+      if (i.quantity > 1){
+        total += +i.price * i.quantity;
+      } else {
+        total += +i.price;
+      }
+    }
+    console.log(total);
+    return total;
   }
 
-  getTaxShip(){
-    return (this.currentCartTotal * 1.1) + 20;
+  getTaxShip(total: number){
+    return (total * 1.1) + 20;
   }
+
   clearCart(){
-    this.currentCartTotal = 0;
     this.itemsChangedSubject.next(this.itemsArray=[]);
   }
 
   deleteItem(item : Item){
-    let index = this.itemsArray.findIndex((x) => {
-      x === item;
-    });
-    return this.itemsArray.splice(index, 1);
-
-
-    // console.log(this.itemsArray, _id);
+    let index = this.itemsArray.findIndex(x => x === item);
+    this.itemsArray.splice(index, 1);
+    this.itemsChangedSubject.next(this.itemsArray);
   }
+
+  reduceQuant(item: Item) {
+    if (item.size) {
+      let index = this.itemsArray.findIndex(x => x._id === item._id && x.size === item.size);
+      this.itemsArray[index].quantity --;
+    } else {
+      let index = this.itemsArray.findIndex(x => x._id === item._id);
+      this.itemsArray[index].quantity --;
+    }
+  }
+  
 }

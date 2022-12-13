@@ -12,52 +12,50 @@ import { Item } from '../item';
 
 
 export class CheckoutComponent implements OnInit {
- public itemsChangedSub : Subscription = new Subscription();
-//  itemsObservable : Observable<Item[]> = new Observable();
-  cartTotal = this.cartService.getCurrentCartTotal();
-  currentCart = this.cartService.getCurrentCart();
-  cartTotalTaxShip = this.cartService.getTaxShip();
+
+ private itemsChangedSub : Subscription = new Subscription();
+ currentCart : Item[] = [];
+  cartTotal : number = 0;
+  cartTaxShip : number = 0;
+  
  constructor(private cartService: CartService) { }
  
  ngOnInit(): void {
-  // this.cartTotal;
-  // this.currentCart;
-  // this.cartTotalTaxShip;
+  this.cartTotal = this.cartService.getCurrentCartTotal();
+  this.currentCart = this.cartService.getCurrentCart();
+  this.cartTaxShip = this.cartService.getTaxShip(this.cartTotal);
+  this.changed();
 
+ }
 
-  //  this.itemsChangedSub = this.cartService.itemsChangedSubject.subscribe(
-  //   (items: Item[]) => {
-  //     this.currentCart = items;
-  //   }
-  //  );
-  //  this.cartTotalTaxShip = (this.cartTotal * 1.1) + 20;
-
-  //  this.itemsObservable = this.cartService.itemsChangedSubject;
+ changed(){
+  this.itemsChangedSub = this.cartService.itemsChangedSubject.subscribe(
+    (items: Item[]) => {
+      this.currentCart = items;
+      console.log(items);
+    }
+   );
+  this.cartTotal = this.cartService.getCurrentCartTotal();
+  this.cartTaxShip = this.cartService.getTaxShip(this.cartTotal);
  }
  
-//  getCurrentCart(){
-//  this.currentCart = this.cartService.getCurrentCart();
-//  }
-
-//  getTotal(){
-//   this.cartTotal = this.cartService.getCurrentCartTotal();
-//   this.cartTotalTaxShip = (this.cartTotal * 1.1) + 20;
-
-//  }
  deleteItem(item : Item){
-  // this.currentCart.splice(item, 1)
-  // this.getTotal();
-  // console.log(this.currentCart);
-  // this.cartTotal = this.cartTotal - +item.price;
   this.cartService.deleteItem(item);
-  this.cartTotal;
-  this.currentCart;
+  this.changed();
  }
 
  clearCart(){
   this.cartService.clearCart();
   this.cartTotal = 0;
-  console.log(this.currentCart);
+ }
+
+ reduceQuant(item: Item){
+  this.cartService.reduceQuant(item);
+  this.changed();
+ }
+ addQuant(item:Item){
+  this.cartService.onAddToCart(item, 1);
+  this.changed();
  }
 }
 

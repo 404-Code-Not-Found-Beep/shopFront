@@ -17,14 +17,17 @@
                <td> <img src="{{item.url}}" width="50"> </td>
                <td>{{item.size}}</td>
                <td>
-                   <button class="btn btn-danger" (click)="deleteItem(item|| '')">Delete</button>
+                   <button *ngIf="item.quantity && item.quantity === 1" class="btn btn-danger " (click)="deleteItem(item|| '')">Delete</button>
+                   <button *ngIf="item.quantity && item.quantity > 1" class="btn btn-danger m-1" (click)="reduceQuant(item|| '')">-</button>
+                   <button  class="btn btn-success ml-1" (click)="addQuant(item|| '')">+</button>
+
                </td>
            </tr>
        </tbody>
    </table>
    <button class="btn btn-danger" (click)="clearCart()">Clear Cart</button>
-   <h2>Tax £{{cartTotal * 0.1}}</h2>
-   <h2>shipping £20</h2>
-   <h1>Cart total £{{cartTotalTaxShip}}</h1>
+   <h2>Tax £{{(cartTotal * 0.1).toFixed(2)}}</h2>
+   <h2>shipping £20.00</h2>
+   <h1>Cart total £{{cartTaxShip.toFixed(2)}}</h1>
    <hr>
    <button class="btn btn-primary">Order</button>

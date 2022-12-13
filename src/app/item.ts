@@ -3,6 +3,6 @@ export interface Item {
     price: string;
     _id?: string;
     url?: string;
-    quantity? : number;
+    quantity : number;
     size? : string;
 }

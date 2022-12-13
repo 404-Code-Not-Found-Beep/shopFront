@@ -27,7 +27,6 @@ export class BooksComponent {
 
   onAddToCart(item:any, quant:number){
     this.cartService.onAddToCart(item, quant);
-    console.log(item, quant);
   }
  
 }
