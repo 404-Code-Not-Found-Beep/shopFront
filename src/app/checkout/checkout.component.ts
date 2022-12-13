@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { CartService } from '../cart/cart.service';
 import { Item } from '../item';
 
@@ -12,35 +12,50 @@ import { Item } from '../item';
 
 
 export class CheckoutComponent implements OnInit {
- currentCart: any = []
- cartTotal : number = 0;
- cartTotalTaxShip : number = 0;
+ public itemsChangedSub : Subscription = new Subscription();
+//  itemsObservable : Observable<Item[]> = new Observable();
+  cartTotal = this.cartService.getCurrentCartTotal();
+  currentCart = this.cartService.getCurrentCart();
+  cartTotalTaxShip = this.cartService.getTaxShip();
  constructor(private cartService: CartService) { }
  
  ngOnInit(): void {
-   this.getCurrentCart();
-   this.getTotal();
+  // this.cartTotal;
+  // this.currentCart;
+  // this.cartTotalTaxShip;
+
+
+  //  this.itemsChangedSub = this.cartService.itemsChangedSubject.subscribe(
+  //   (items: Item[]) => {
+  //     this.currentCart = items;
+  //   }
+  //  );
+  //  this.cartTotalTaxShip = (this.cartTotal * 1.1) + 20;
+
+  //  this.itemsObservable = this.cartService.itemsChangedSubject;
  }
  
- getCurrentCart(){
- this.currentCart = this.cartService.getCurrentCart();
- }
+//  getCurrentCart(){
+//  this.currentCart = this.cartService.getCurrentCart();
+//  }
 
- getTotal(){
-  this.cartTotal = this.cartService.getCurrentCartTotal();
- }
+//  getTotal(){
+//   this.cartTotal = this.cartService.getCurrentCartTotal();
+//   this.cartTotalTaxShip = (this.cartTotal * 1.1) + 20;
+
+//  }
  deleteItem(item : Item){
-  this.currentCart.splice(item, 1)
-  this.cartTotal = this.cartTotal - +item.price;
+  // this.currentCart.splice(item, 1)
   // this.getTotal();
   // console.log(this.currentCart);
-  // this.cartService.deleteItem(id);
+  // this.cartTotal = this.cartTotal - +item.price;
+  this.cartService.deleteItem(item);
+  this.cartTotal;
+  this.currentCart;
  }
 
  clearCart(){
-  // this.cartService.clearCart();
-
-  this.currentCart = [];
+  this.cartService.clearCart();
   this.cartTotal = 0;
   console.log(this.currentCart);
  }

@@ -1,5 +1,6 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Item } from '../item';
 import { CurrentCartModel } from './current-cart.model';
 
@@ -8,7 +9,8 @@ import { CurrentCartModel } from './current-cart.model';
 })
 
 export class CartService {
-  // cartModel : CurrentCartModel = new CurrentCartModel();
+  itemsChangedSubject = new Subject<Item[]>();
+
   currentCartTotal: number = 0;
   itemsArray : Item[] = [];
   constructor() { }
@@ -17,25 +19,36 @@ export class CartService {
     if(size){
       item.size= size;
     } 
+    // if any of the items in cart have the same id then make quantity +1 else 
     item.quantity = quant;
     this.itemsArray.push(item);
-    console.log(this.itemsArray);
     this.currentCartTotal += +item.price;
+    this.itemsChangedSubject.next(this.itemsArray.slice());
   }
 
   getCurrentCart(){
-    return this.itemsArray;
+    return this.itemsArray.slice();
   }
+
   getCurrentCartTotal(){
     return this.currentCartTotal;
   }
-  // clearCart(){
-  //   return this.itemsArray = [];
-  //   return this.currentCartTotal = 0;
-  // }
 
-  // deleteItem(_id: string){
-  //   // return this.itemsArray.splice(this.itemsArray._id, 1);
-  //   console.log(this.itemsArray, _id);
-  // }
+  getTaxShip(){
+    return (this.currentCartTotal * 1.1) + 20;
+  }
+  clearCart(){
+    this.currentCartTotal = 0;
+    this.itemsChangedSubject.next(this.itemsArray=[]);
+  }
+
+  deleteItem(item : Item){
+    let index = this.itemsArray.findIndex((x) => {
+      x === item;
+    });
+    return this.itemsArray.splice(index, 1);
+
+
+    // console.log(this.itemsArray, _id);
+  }
 }
