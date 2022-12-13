@@ -16,6 +16,7 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { BooksComponent } from './store-front/books/books.component';
 import { ShirtsComponent } from './store-front/shirts/shirts.component';
 import { FormsModule } from '@angular/forms';
+import { SearchPipe } from './search.pipe';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FormsModule } from '@angular/forms';
     CheckoutComponent,
     DropdownDirective,
     BooksComponent,
-    ShirtsComponent
+    ShirtsComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

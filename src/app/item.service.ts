@@ -9,14 +9,14 @@ import { Item } from './item';
 export class ItemService {
   private url = 'http://localhost:5200';
   private items$: Subject<Item[]> = new Subject();
-  // private items : Item[] = [];
+  private searchItems$: Subject<Item[]> = new Subject();
   constructor(private httpClient: HttpClient) { }
   
   private refreshItems(url:string) {
-    this.httpClient.get<Item[]>(`${this.url}/${url}`)
+    let fullUrl = `${this.url}/${url}`
+    this.httpClient.get<Item[]>(fullUrl)
       .subscribe(items => {
         this.items$.next(items);
-        // this.items = items;
       });
   }
   
@@ -25,25 +25,16 @@ export class ItemService {
     return this.items$; 
   }
 
-  // getItems_Array(): Item[]{
-  //   this.refreshItems;
-  //   return this.items;
-  // }
-  
-  getItem(id: string): Observable<Item> {
-    return this.httpClient.get<Item>(`${this.url}/items/${id}`);
-  }
-  
-  createItem(item: Item): Observable<string> {
-    return this.httpClient.post(`${this.url}/items`, item, { responseType: 'text' });
-  }
-  
-  updateItem(id: string, item: Item): Observable<string> {
-    return this.httpClient.put(`${this.url}/items/${id}`, item, { responseType: 'text' });
-  }
-  
-  deleteItem(id: string): Observable<string> {
-    return this.httpClient.delete(`${this.url}/items/${id}`, { responseType: 'text' });
+  searchBarGetItems(): Subject<Item[]> {
+    // this.refreshItems('items');
+    // return this.items$;
+    //this needed a new instance of an items$ array, it was using the same instance of items$ 
+    //meaning it was being updated when different components were rendered
+    this.httpClient.get<Item[]>(`${this.url}/items`)
+    .subscribe(items => {
+      this.searchItems$.next(items);
+    });
+    return this.searchItems$;
   }
  }
 

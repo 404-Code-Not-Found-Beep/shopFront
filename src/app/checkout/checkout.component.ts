@@ -32,7 +32,6 @@ export class CheckoutComponent implements OnInit {
   this.itemsChangedSub = this.cartService.itemsChangedSubject.subscribe(
     (items: Item[]) => {
       this.currentCart = items;
-      console.log(items);
     }
    );
   this.cartTotal = this.cartService.getCurrentCartTotal();
@@ -47,6 +46,7 @@ export class CheckoutComponent implements OnInit {
  clearCart(){
   this.cartService.clearCart();
   this.cartTotal = 0;
+  this.changed();
  }
 
  reduceQuant(item: Item){

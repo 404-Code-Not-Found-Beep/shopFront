@@ -23,7 +23,7 @@
       <option value="M">M</option>
       <option value="L">L</option>
   </select></div>
-  <button class="btn btn-primary mt-2" (click)="quickAdd(product, size)" >Quick add</button>
+  <button class="btn btn-primary mt-2" *ngIf="size || product.price <= 15" (click)="quickAdd(product, size)" >Quick add</button>
     </div>
   </ng-template>
 </p-carousel>

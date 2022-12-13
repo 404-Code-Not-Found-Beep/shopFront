@@ -45,7 +45,6 @@ export class CartService {
         total += +i.price;
       }
     }
-    console.log(total);
     return total;
   }
 

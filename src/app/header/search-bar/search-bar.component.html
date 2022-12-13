@@ -1,17 +1,4 @@
-<div class="row">
-    <div class="col-xs-12">
-        <span><label for="search">Search</label> <input type="text" ></span>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-xs-12">
-        <!-- <app-recipe-item 
-        *ngFor="let recipeElement of recipes | filter:filteredRecipe: 'name' ; let i = index " 
-        [recipe]="recipeElement"
-        [index]="i"
-        ></app-recipe-item> 
-
-    [(ngModel)]="filteredRecipe" -->
-    </div>
+<span ><label class="m-1" for="search">Search</label> <input type="text" [(ngModel)]="searchBar"></span>
+<div>
+    <img *ngFor="let item of searchBarItems | search: searchBar : 'name'" src="{{item.url}}" alt="{{item.name}}" width="50" (click)="nav(item)">
 </div>

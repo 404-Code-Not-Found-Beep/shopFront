@@ -43,7 +43,6 @@ export class CarouselComponent implements OnInit {
  }
  
  private fetchItems(): void {
-  // this.items = this.itemsService.getItems_Array();
   let url = "items"
    this.itemsService.getItems_Observable(url).subscribe(items => { this.items = items });
  }
