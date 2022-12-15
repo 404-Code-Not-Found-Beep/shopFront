@@ -27,4 +27,4 @@ nav(item:Item){
     this.searchBar = '';
   }
 }
-}
+} 

@@ -34,15 +34,19 @@ shopRouter.get('/shirts', async (req,res) => {
         res.status(500).send(error.message);
     }
 })
+
 //this could be used with the search bar fnctionality
 // shopRouter.get('/:id', async (req,res) => {
 //     try {
 //         const id = req?.params?.id;
 //         const query = {_id: new mongodb.ObjectId(id) };
-//         const item = await collections.items.findOne(query);
-
-//         if (item) {
-//             res.status(200).send(item);
+//         const bookItem = await collections.books.findOne(query);
+//         const shirtItem = await collections.Shirts.findOne(query);
+//         if ( bookItem ) {
+//             res.status(200).send(bookItem);
+//         }
+//         if (shirtItem) {
+//             res.status(200).send(shirtItem);
 //         } else {
 //             res.status(404).send(`Failed to find an item: ID ${id}`);
 //         }

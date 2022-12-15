@@ -2,3 +2,4 @@
 <div>
     <img *ngFor="let item of searchBarItems | search: searchBar : 'name'" src="{{item.url}}" alt="{{item.name}}" width="50" (click)="nav(item)">
 </div>
+ 
