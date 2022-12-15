@@ -35,22 +35,22 @@ shopRouter.get('/shirts', async (req,res) => {
     }
 })
 
-//this could be used with the search bar fnctionality
-// shopRouter.get('/:id', async (req,res) => {
-//     try {
-//         const id = req?.params?.id;
-//         const query = {_id: new mongodb.ObjectId(id) };
-//         const bookItem = await collections.books.findOne(query);
-//         const shirtItem = await collections.Shirts.findOne(query);
-//         if ( bookItem ) {
-//             res.status(200).send(bookItem);
-//         }
-//         if (shirtItem) {
-//             res.status(200).send(shirtItem);
-//         } else {
-//             res.status(404).send(`Failed to find an item: ID ${id}`);
-//         }
-//     } catch (error) {
-//         res.status(404).send(`Failed to find an item: ID ${req?.params?.id}`);
-//     }
-// });
+//this could be used with the search bar functionality
+shopRouter.get('/:id', async (req,res) => {
+    try {
+        const id = req?.params?.id;
+        const query = {_id: new mongodb.ObjectId(id) };
+        const bookItem = await collections.books.findOne(query);
+        const shirtItem = await collections.Shirts.findOne(query);
+        if ( bookItem ) {
+            res.status(200).send(bookItem);
+        }
+        if (shirtItem) {
+            res.status(200).send(shirtItem);
+        } else {
+            res.status(404).send(`Failed to find an item: ID ${id}`);
+        }
+    } catch (error) {
+        res.status(404).send(`Failed to find an item: ID ${req?.params?.id}`);
+    }
+});
