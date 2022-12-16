@@ -1,11 +1,14 @@
 <span ><label class="m-1" for="search">Search</label> <input type="text" [(ngModel)]="searchBar"></span>
-<div>
-    <img *ngFor="let item of searchBarItems | search: searchBar : 'name'" 
+<div *ngFor="let item of searchBarItems | search: searchBar : 'name'" >
+    <div class="card bg-light text-dark mb-1" (click)="nav(item)" >
+    <div class="card-body">
+    <img  
     src="{{item.url}}" 
     alt="{{item.name}}" 
     width="50" 
-    (click)="nav(item)"
-   
-    class="m-2">
+    class="m-1">
+    <h6>{{item.name}}</h6>
+</div>
+</div>
 </div>
  

@@ -1,6 +1,7 @@
-img{
-    cursor: pointer;
+div{
+    z-index: 1;
 }
-img:hover{
-    background-color: black;
+div:hover{
+    background-color: rgb(87, 146, 97);
+    cursor: pointer
 }
