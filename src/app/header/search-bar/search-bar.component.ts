@@ -10,6 +10,7 @@ import { ItemService } from 'src/app/item.service';
 export class SearchBarComponent implements OnInit{
 searchBar = '';
 searchBarItems : any;
+id = '';
 ngOnInit(): void {
   this.fetchItems();
  }
@@ -19,12 +20,8 @@ ngOnInit(): void {
   this.itemsService.searchBarGetItems().subscribe((items: Item[]) => { this.searchBarItems = items });
 } 
 nav(item:Item){
-  if(+item.price > 15){
-    this.router.navigate(['/shirts']);
-    this.searchBar = '';
-  } else{
-    this.router.navigate(['/books']);
+    this.router.navigate([item._id]);
     this.searchBar = '';
   }
-}
 } 
+

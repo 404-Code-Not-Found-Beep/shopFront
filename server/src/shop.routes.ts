@@ -33,7 +33,7 @@ shopRouter.get('/shirts', async (req,res) => {
     } catch (error) { 
         res.status(500).send(error.message);
     }
-})
+}) 
 
 //this could be used with the search bar functionality
 shopRouter.get('/:id', async (req,res) => {
@@ -44,10 +44,11 @@ shopRouter.get('/:id', async (req,res) => {
         const shirtItem = await collections.Shirts.findOne(query);
         if ( bookItem ) {
             res.status(200).send(bookItem);
-        }
+        } 
         if (shirtItem) {
             res.status(200).send(shirtItem);
-        } else {
+        } 
+        if (!shirtItem && !bookItem) {
             res.status(404).send(`Failed to find an item: ID ${id}`);
         }
     } catch (error) {

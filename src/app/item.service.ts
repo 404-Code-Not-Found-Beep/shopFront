@@ -8,6 +8,7 @@ import { Item } from './item';
 })
 export class ItemService {
   private url = 'http://localhost:5200';
+  private singleItem$ :Subject<Item> = new Subject();
   private items$: Subject<Item[]> = new Subject();
   private searchItems$: Subject<Item[]> = new Subject();
   constructor(private httpClient: HttpClient) { }
@@ -36,5 +37,13 @@ export class ItemService {
     });
     return this.searchItems$;
   }
- }
+
+  getSingleItem(id: string): Subject<Item> {
+    this.httpClient.get<Item>(`${this.url}/items/${id}`)
+    .subscribe(item => {
+      this.singleItem$.next(item);
+    });
+    return this.singleItem$;
+  }
+ } 
 

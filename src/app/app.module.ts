@@ -17,6 +17,7 @@ import { BooksComponent } from './store-front/books/books.component';
 import { ShirtsComponent } from './store-front/shirts/shirts.component';
 import { FormsModule } from '@angular/forms';
 import { SearchPipe } from './search.pipe';
+import { SingleItemComponent } from './single-item/single-item.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SearchPipe } from './search.pipe';
     DropdownDirective,
     BooksComponent,
     ShirtsComponent,
-    SearchPipe
+    SearchPipe,
+    SingleItemComponent
   ],
   imports: [
     BrowserModule,

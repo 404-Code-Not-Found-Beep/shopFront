@@ -1,5 +1,11 @@
 <span ><label class="m-1" for="search">Search</label> <input type="text" [(ngModel)]="searchBar"></span>
 <div>
-    <img *ngFor="let item of searchBarItems | search: searchBar : 'name'" src="{{item.url}}" alt="{{item.name}}" width="50" (click)="nav(item)">
+    <img *ngFor="let item of searchBarItems | search: searchBar : 'name'" 
+    src="{{item.url}}" 
+    alt="{{item.name}}" 
+    width="50" 
+    (click)="nav(item)"
+   
+    class="m-2">
 </div>
  

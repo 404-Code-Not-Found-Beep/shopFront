@@ -1,0 +1,23 @@
+<div class="wrapContainer" style="display:flex; 
+justify-content:space-around; 
+flex-wrap: wrap">
+    <div class="card bg-dark text-light mb-3">
+        <div class="card-body">
+            <img src="{{item$.url}}" alt="" width="250">
+            <span><h2 >{{item$.name}}</h2></span>
+            <!-- <label for="">1</label> -->
+            <input class="m-3"
+            type="number"
+            [(ngModel)]="quant"
+            name="quant"
+            [defaultValue]="quant"
+            min="1">
+            <select *ngIf="item$.price > 15" name="size" id="size" [(ngModel)]="size">
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+            </select>
+            <button class="btn btn-primary m-3" (click)="onAddToCart(item$, quant, size)" >Add to cart</button>
+        </div>
+    </div>
+</div>

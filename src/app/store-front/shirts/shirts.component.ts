@@ -23,7 +23,7 @@ export class ShirtsComponent {
   
   private fetchItems(): void {
     let url = "items/shirts"
-    this.items$ = this.itemsService.getItems_Observable(url);
+    this.items$ = this.itemsService.getItems_Observable(url); 
   }
   onAddToCart(item:any, quant: number, size: string){
     this.cartService.onAddToCart(item, quant, size);
