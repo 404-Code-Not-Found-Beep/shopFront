@@ -29,4 +29,7 @@ export class ShirtsComponent {
     this.cartService.onAddToCart(item, quant, size);
   }
   
+  nav(item:Item){
+    this.router.navigate([item._id]);
+  }
 }

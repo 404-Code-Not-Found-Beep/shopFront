@@ -28,5 +28,8 @@ export class BooksComponent {
   onAddToCart(item:any, quant:number){
     this.cartService.onAddToCart(item, quant);
   }
+  nav(item:Item){
+    this.router.navigate([item._id]);
+  }
  
 }

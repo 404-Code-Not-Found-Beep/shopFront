@@ -45,5 +45,33 @@ export class ItemService {
     });
     return this.singleItem$;
   }
+
+//doing it as a subject not an observable
+  // updateItem(id: string, item: Item): Subject<string> {
+  //   this.httpClient.put(`${this.url}/employees/${id}`, item, { responseType: 'text' }).subscribe(item => {
+  //     this.singleItem$.next(item);
+  //   });
+  //   return this.items$;
+  // }
+
+  createItem(item: Item): Observable<string>{
+    return this.httpClient.post(`${this.url}/items`, item, { responseType: 'text' });
+  };
+  
+
+  updateItem(id: string, item: Item): Observable<string> {
+    return this.httpClient.put(`${this.url}/items/${id}`, item, { responseType: 'text' });
+  }
+
+  deleteItem(id: string):Observable<any>{
+    // this.refreshItems(this.url);
+    return this.httpClient.delete(`${this.url}/items/${id}`, { responseType: 'text' });
+  }
+
  } 
+
+ 
+
+
+ 
 

@@ -11,13 +11,18 @@ flex-wrap: wrap">
             [(ngModel)]="quant"
             name="quant"
             [defaultValue]="quant"
-            min="1">
-            <select *ngIf="item$.price > 15" name="size" id="size" [(ngModel)]="size">
-                <option value="S">S</option>
+            min="1"
+            data-cy="quantityInput">
+            <select *ngIf="item$.price > 15" name="size" id="size" [(ngModel)]="size" data-cy="selectSize">
+                <option value="S" >S</option>
                 <option value="M">M</option>
                 <option value="L">L</option>
             </select>
-            <button class="btn btn-primary m-3" (click)="onAddToCart(item$, quant, size)" >Add to cart</button>
+            <button class="btn btn-primary m-3" (click)="onAddToCart(item$, quant, size)" data-cy="cartAdd">Add to cart</button>
         </div>
+    </div>
+    <div class="">
+        <h1>Description</h1>
+        <h4>Description</h4>
     </div>
 </div>

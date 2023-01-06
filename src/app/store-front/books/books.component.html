@@ -3,7 +3,7 @@ justify-content:space-around;
 flex-wrap: wrap">
     <div class="card bg-dark text-light mb-3" 
     *ngFor="let item of items$ | async">
-        <div class="card-body">
+        <div class="card-body" (click)="nav(item)" id="cardId">
             <img src="{{item.url}}" alt="" width="250">
             <span><h2>{{item.name}}</h2></span>
             <input class="m-3"

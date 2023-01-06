@@ -16,7 +16,8 @@
       <img  width="200" src={{product.url}} alt="">
     </div>
       <br>
-     <div *ngIf="product.price > 15" class="col-sm-2"> <select name="size" id="size" [(ngModel)]="size" class="form-select">
+     <div *ngIf="product.price > 15" class="col-sm-2"> 
+      <select name="size" id="size" [(ngModel)]="size" class="form-select" data-cy="selectSize">
       <option value="S">S</option>
       <option value="M">M</option>
       <option value="L">L</option>
