@@ -51,8 +51,11 @@ export class CarouselComponent implements OnInit {
   }
 
   quickAdd(product: any, size?: string) {
+    if(product.name.toLowerCase().match("book")){
+    this.cartService.onAddToCart(product, 1);
+  } else {
     this.cartService.onAddToCart(product, 1, size);
-    console.log(product);
+  }
   }
   nav(product: any) {
     this.router.navigate([`/${product._id}`]);

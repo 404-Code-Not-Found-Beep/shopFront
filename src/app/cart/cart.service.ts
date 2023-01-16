@@ -25,7 +25,6 @@ export class CartService {
     if (index !== -1) {
       this.itemsArray[index].quantity += quant;
       this.itemsChangedSubject.next(this.itemsArray);
-
       return;
     } else itemToAdd.quantity = quant;
     this.itemsArray.push(itemToAdd);
