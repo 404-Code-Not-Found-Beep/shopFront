@@ -4,32 +4,39 @@ import { Observable } from 'rxjs';
 import { Item } from '../../item';
 import { ItemService } from 'src/app/item.service';
 import { CartService } from 'src/app/cart/cart.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html',
-  styleUrls: ['./books.component.css']
+  styleUrls: ['./books.component.css'],
 })
 export class BooksComponent {
   items$: Observable<Item[]> = new Observable();
   quant = 1;
-  
-  constructor(private itemsService: ItemService, private router: Router, private cartService: CartService) { }
-  
+
+  constructor(
+    private itemsService: ItemService,
+    private router: Router,
+    private cartService: CartService,
+    private titleService: Title
+  ) {
+    this.titleService.setTitle('Shop Books');
+  }
+
   ngOnInit(): void {
     this.fetchItems();
   }
-  
+
   private fetchItems(): void {
-    let url = "items/books"
+    let url = 'items/books';
     this.items$ = this.itemsService.getItems_Observable(url);
   }
 
-  onAddToCart(item:any, quant:number){
+  onAddToCart(item: any, quant: number) {
     this.cartService.onAddToCart(item, quant);
   }
-  nav(item:Item){
+  nav(item: Item) {
     this.router.navigate([item._id]);
   }
- 
 }

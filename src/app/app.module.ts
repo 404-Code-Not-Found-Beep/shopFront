@@ -41,7 +41,7 @@ import { ManagementAddItemComponent } from './management/management-add-item/man
     ManagementComponent,
     ManagementFormComponent,
     ManagementEditItemComponent,
-    ManagementAddItemComponent
+    ManagementAddItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,9 +49,9 @@ import { ManagementAddItemComponent } from './management/management-add-item/man
     HttpClientModule,
     ReactiveFormsModule,
     CarouselModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

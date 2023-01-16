@@ -4,32 +4,40 @@ import { Observable } from 'rxjs';
 import { Item } from '../../item';
 import { ItemService } from 'src/app/item.service';
 import { CartService } from 'src/app/cart/cart.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-shirts',
   templateUrl: './shirts.component.html',
-  styleUrls: ['./shirts.component.css']
+  styleUrls: ['./shirts.component.css'],
 })
 export class ShirtsComponent {
   items$: Observable<Item[]> = new Observable();
-  quant : number = 1;
-  size: string = "S";
- 
-  constructor(private itemsService: ItemService, private router: Router, private cartService: CartService) { }
-  
+  quant: number = 1;
+  size: string = 'S';
+
+  constructor(
+    private itemsService: ItemService,
+    private router: Router,
+    private cartService: CartService,
+    private titleService: Title
+  ) {
+    this.titleService.setTitle('Shop Shirts');
+  }
+
   ngOnInit(): void {
     this.fetchItems();
   }
-  
+
   private fetchItems(): void {
-    let url = "items/shirts"
-    this.items$ = this.itemsService.getItems_Observable(url); 
+    let url = 'items/shirts';
+    this.items$ = this.itemsService.getItems_Observable(url);
   }
-  onAddToCart(item:any, quant: number, size: string){
+  onAddToCart(item: any, quant: number, size: string) {
     this.cartService.onAddToCart(item, quant, size);
   }
-  
-  nav(item:Item){
+
+  nav(item: Item) {
     this.router.navigate([item._id]);
   }
 }

@@ -14,19 +14,19 @@ import { StoreFrontComponent } from './store-front/store-front.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  {path: 'home', component: HomePageComponent},
+  { path: 'home', component: HomePageComponent },
   { path: 'items', component: StoreFrontComponent },
-  {path: 'checkout', component: CheckoutComponent},
-  {path: 'books', component: BooksComponent},
-  {path: 'shirts', component: ShirtsComponent},
-  {path: 'manager-portal/new', component: ManagementAddItemComponent},
-  {path: 'manager-portal', component: ManagementComponent},
-  {path: 'manager-portal/edit/:id', component: ManagementEditItemComponent},
-  {path: ':id', component : SingleItemComponent},
+  { path: 'checkout', component: CheckoutComponent },
+  { path: 'books', component: BooksComponent },
+  { path: 'shirts', component: ShirtsComponent },
+  { path: 'manager-portal', component: ManagementComponent },
+  { path: 'manager-portal/new', component: ManagementAddItemComponent },
+  { path: 'manager-portal/edit/:id', component: ManagementEditItemComponent },
+  { path: ':id', component: SingleItemComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

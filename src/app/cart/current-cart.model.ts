@@ -1,16 +1,15 @@
-import { Item } from "../item";
+import { Item } from '../item';
 
 export class CurrentCartModel {
-    public itemsArray : Item[] = []
+  public itemsArray: Item[] = [];
 
-    
-    public get cartTotal() : number {
-        let total = 0;
-        for  (let item of this.itemsArray){
-            total += +item.price;
-        }
-        return total;
+  public get cartTotal(): number {
+    let total = 0;
+    for (let item of this.itemsArray) {
+      total += +item.price;
     }
-    
-    getCurrentCartTotal(){}
+    return total;
+  }
+
+  getCurrentCartTotal() {}
 }
