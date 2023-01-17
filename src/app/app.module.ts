@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -22,6 +23,7 @@ import { ManagementComponent } from './management/management.component';
 import { ManagementFormComponent } from './management/management-form/management-form.component';
 import { ManagementEditItemComponent } from './management/management-edit-item/management-edit-item.component';
 import { ManagementAddItemComponent } from './management/management-add-item/management-add-item.component';
+
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { ManagementAddItemComponent } from './management/management-add-item/man
     ReactiveFormsModule,
     CarouselModule,
     FormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

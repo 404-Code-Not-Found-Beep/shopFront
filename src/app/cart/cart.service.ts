@@ -9,9 +9,10 @@ import { CurrentCartModel } from './current-cart.model';
 })
 export class CartService {
   itemsChangedSubject = new Subject<Item[]>();
+  cartNumberItems = new Subject<number>();
 
-  // currentCartTotal: number = 0;
   itemsArray: Item[] = [];
+  cartNumberofItems:number = 0
   constructor() {}
 
   onAddToCart(item: Item, quant: number, size?: string) {
@@ -24,9 +25,11 @@ export class CartService {
     );
     if (index !== -1) {
       this.itemsArray[index].quantity += quant;
+      this.cartNumberItems.next(this.cartNumberofItems += quant);
       this.itemsChangedSubject.next(this.itemsArray);
       return;
     } else itemToAdd.quantity = quant;
+    this.cartNumberItems.next(this.cartNumberofItems += quant);
     this.itemsArray.push(itemToAdd);
     this.itemsChangedSubject.next(this.itemsArray);
   }
@@ -53,12 +56,14 @@ export class CartService {
 
   clearCart() {
     this.itemsChangedSubject.next((this.itemsArray = []));
+    this.cartNumberItems.next(this.cartNumberofItems = 0);
   }
 
   deleteItem(item: Item) {
     let index = this.itemsArray.findIndex((x) => x === item);
     this.itemsArray.splice(index, 1);
     this.itemsChangedSubject.next(this.itemsArray);
+    this.cartNumberItems.next(this.cartNumberofItems -= 1); 
   }
 
   reduceQuant(item: Item) {
@@ -67,9 +72,13 @@ export class CartService {
         (x) => x._id === item._id && x.size === item.size
       );
       this.itemsArray[index].quantity--;
+      this.cartNumberItems.next(this.cartNumberofItems -= 1); 
+       
     } else {
       let index = this.itemsArray.findIndex((x) => x._id === item._id);
       this.itemsArray[index].quantity--;
+      this.cartNumberItems.next(this.cartNumberofItems -=1 ); 
+
     }
   }
 }
