@@ -53,3 +53,4 @@ export class SingleItemComponent implements OnInit {
     this.cartService.onAddToCart(item, quant, size);
   }
 }
+ 
