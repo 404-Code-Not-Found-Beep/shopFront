@@ -1,41 +1,75 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Item } from '../item';
 import { CurrentCartModel } from './current-cart.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class CartService {
-  // cartModel : CurrentCartModel = new CurrentCartModel();
-  currentCartTotal: number = 0;
-  itemsArray : Item[] = [];
-  constructor() { }
+  itemsChangedSubject = new Subject<Item[]>();
 
-  onAddToCart(item: Item, quant: number, size? : string){
-    if(size){
-      item.size= size;
-    } 
-    item.quantity = quant;
-    this.itemsArray.push(item);
-    console.log(this.itemsArray);
-    this.currentCartTotal += +item.price;
+  // currentCartTotal: number = 0;
+  itemsArray: Item[] = [];
+  constructor() {}
+
+  onAddToCart(item: Item, quant: number, size?: string) {
+    let itemToAdd = JSON.parse(JSON.stringify(item));
+    if (size) {
+      itemToAdd.size = size;
+    }
+    let index = this.itemsArray.findIndex(
+      (x) => x._id === itemToAdd._id && x.size === itemToAdd.size
+    );
+    if (index !== -1) {
+      this.itemsArray[index].quantity += quant;
+      this.itemsChangedSubject.next(this.itemsArray);
+      return;
+    } else itemToAdd.quantity = quant;
+    this.itemsArray.push(itemToAdd);
+    this.itemsChangedSubject.next(this.itemsArray);
   }
 
-  getCurrentCart(){
+  getCurrentCart() {
     return this.itemsArray;
   }
-  getCurrentCartTotal(){
-    return this.currentCartTotal;
-  }
-  // clearCart(){
-  //   return this.itemsArray = [];
-  //   return this.currentCartTotal = 0;
-  // }
 
-  // deleteItem(_id: string){
-  //   // return this.itemsArray.splice(this.itemsArray._id, 1);
-  //   console.log(this.itemsArray, _id);
-  // }
+  getCurrentCartTotal() {
+    let total = 0;
+    for (let i of this.itemsArray) {
+      if (i.quantity > 1) {
+        total += +i.price * i.quantity;
+      } else {
+        total += +i.price;
+      }
+    }
+    return total;
+  }
+
+  getTaxShip(total: number) {
+    return total * 1.1 + 20;
+  }
+
+  clearCart() {
+    this.itemsChangedSubject.next((this.itemsArray = []));
+  }
+
+  deleteItem(item: Item) {
+    let index = this.itemsArray.findIndex((x) => x === item);
+    this.itemsArray.splice(index, 1);
+    this.itemsChangedSubject.next(this.itemsArray);
+  }
+
+  reduceQuant(item: Item) {
+    if (item.size) {
+      let index = this.itemsArray.findIndex(
+        (x) => x._id === item._id && x.size === item.size
+      );
+      this.itemsArray[index].quantity--;
+    } else {
+      let index = this.itemsArray.findIndex((x) => x._id === item._id);
+      this.itemsArray[index].quantity--;
+    }
+  }
 }

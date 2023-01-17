@@ -16,6 +16,12 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { BooksComponent } from './store-front/books/books.component';
 import { ShirtsComponent } from './store-front/shirts/shirts.component';
 import { FormsModule } from '@angular/forms';
+import { SearchPipe } from './search.pipe';
+import { SingleItemComponent } from './single-item/single-item.component';
+import { ManagementComponent } from './management/management.component';
+import { ManagementFormComponent } from './management/management-form/management-form.component';
+import { ManagementEditItemComponent } from './management/management-edit-item/management-edit-item.component';
+import { ManagementAddItemComponent } from './management/management-add-item/management-add-item.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +35,13 @@ import { FormsModule } from '@angular/forms';
     CheckoutComponent,
     DropdownDirective,
     BooksComponent,
-    ShirtsComponent
+    ShirtsComponent,
+    SearchPipe,
+    SingleItemComponent,
+    ManagementComponent,
+    ManagementFormComponent,
+    ManagementEditItemComponent,
+    ManagementAddItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,9 +49,9 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule,
     CarouselModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

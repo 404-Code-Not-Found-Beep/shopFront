@@ -1,0 +1,38 @@
+[
+  {
+    "_id": "6391ff66938ac5b34c226a1c",
+    "name": "Mock Pro Shirt",
+    "url": "../../assets/proShirt.png",
+    "price": 65
+  },
+  {
+    "name": "mock Creator Shirt",
+    "url": "../../assets/creatorShirt.png",
+    "price": 35
+  },
+  {
+    "name": "mock Doer Shirt",
+    "url": "../../assets/doerShirt.png",
+    "price": 35
+  },
+  {
+    "name": "mock Translator Shirt",
+    "url": "../../assets/translatorShirt.png",
+    "price": 35
+  },
+  {
+    "name": "mock Pro Shirt",
+    "url": "../../assets/proShirt.png",
+    "price": 60
+  },
+  {
+    "name": " MOCK Curious Book",
+    "url": "../../assets/beCuriousBook.png",
+    "price": 10
+  },
+  {
+    "name": " MOCK WYWM Book",
+    "url": "../../assets/wywmBook.png",
+    "price": 15
+  }
+]
