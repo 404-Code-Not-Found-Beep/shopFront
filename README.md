@@ -1,27 +1,27 @@
-# ShopFront
+# Download 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.8.
+Download the Zip file or clone the Repo.
+
+# Open the folder in your IDE
+
+Open a terminal at the top level directory, I.E. "C:\Users\******\Downloads\shopFront".
+
+# Install packages
+
+Run `npm install` to install the packages the application requires. If this fails; 
+1: Follow the relevant steps in the error code.
+2: Make sure you are in the correct directory (see the step above).
+3: If its a dependancy error, install the relevant dependancies.
+4: Try running `npm install --force`.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Navigate to the server directory, I.E. "C:\Users\******\Downloads\shopFront\server",
+Run `npx ts-node src/server.ts` to start the back-end server to connect to the Mongo dataBase.
 
-## Code scaffolding
+Navigate to the client directory, I.E. ""C:\Users\******\Downloads\shopFront\src",
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/` on your browser. The application will automatically reload if you change any of the source files.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Cypress testing
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Run `npx cypress open` at the top level directory (I.E. "C:\Users\******\Downloads\shopFront"). 
