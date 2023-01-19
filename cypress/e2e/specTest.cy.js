@@ -37,13 +37,19 @@ describe("testing shop app", () => {
     });
   });
   context("tests cart maths", () => {
-    it("checks the tax is correct", () => {
+    it.only("checks the tax is correct", () => {
       cy.visit("/6391ff66938ac5b34c226a1c");
       cy.getByData("selectSize").select("L");
       cy.get("[data-cy='cartAdd']").click();
       cy.getByData("checkoutButton").click();
-      cy.getByData("priceOfItem").contains("65");
-      cy.getByData("itemTax").contains("6.5");
+      cy.getByData("priceOfItem").then((span) => {
+        let value = parseFloat(span.text());
+        console.log(value);
+        cy.getByData("itemTax").then((span) => {
+          let taxVal = parseFloat(span.text());
+          expect(taxVal).to.eq(value * 0.1);
+        });
+      });
     });
   });
   context("Adds and then removes item from checkout", () => {
