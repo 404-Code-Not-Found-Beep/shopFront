@@ -37,7 +37,7 @@ describe("testing shop app", () => {
     });
   });
   context("tests cart maths", () => {
-    it.only("checks the tax is correct", () => {
+    it("checks the tax is correct", () => {
       cy.visit("/6391ff66938ac5b34c226a1c");
       cy.getByData("selectSize").select("L");
       cy.get("[data-cy='cartAdd']").click();

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CartService } from '../cart/cart.service';
@@ -11,8 +11,6 @@ import { ItemService } from '../item.service';
   styleUrls: ['./single-item.component.css'],
 })
 export class SingleItemComponent implements OnInit {
-//new
-// @Input() item$ : any;
 
   item$: any = [
     {

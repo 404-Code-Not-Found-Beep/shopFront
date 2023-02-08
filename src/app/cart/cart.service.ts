@@ -1,8 +1,6 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Item } from '../item';
-import { CurrentCartModel } from './current-cart.model';
 
 @Injectable({
   providedIn: 'root',

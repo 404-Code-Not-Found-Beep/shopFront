@@ -25,6 +25,16 @@
             >
           </li>
           <li routerLinkActive="active">
+            <a class="nav-link" routerLink="/auth" data-cy="authButton"
+             *ngIf="authenticated" >Login</a
+            >
+          </li>
+          <li routerLinkActive="active">
+            <a class="nav-link" routerLink="/auth" data-cy="authButton"
+             *ngIf="!authenticated" >Signup</a
+            >
+          </li>
+          <li routerLinkActive="active">
             <a
               class="nav-link"
               routerLink="/manager-portal"
@@ -41,7 +51,13 @@
   <div class="col-6">
     <app-search-bar class="m-2"></app-search-bar>
     <div class="col-12">
-    <button class="btn btn-primary m-1 position-absolute top-1 end-25" id="backButton" (click)="backButton()">Back</button>
-  </div>
+      <button
+        class="btn btn-primary m-1 position-absolute top-1 end-25"
+        id="backButton"
+        (click)="backButton()"
+      >
+        Back
+      </button>
+    </div>
   </div>
 </header>

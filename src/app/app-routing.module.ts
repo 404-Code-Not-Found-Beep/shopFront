@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { AuthComponent } from './Auth/auth/auth.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { HeaderComponent } from './header/header.component';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'manager-portal', component: ManagementComponent },
   { path: 'manager-portal/new', component: ManagementAddItemComponent },
   { path: 'manager-portal/edit/:id', component: ManagementEditItemComponent },
+  {path: 'auth', component: AuthComponent},
   { path: ':id', component: SingleItemComponent },
 ];
 

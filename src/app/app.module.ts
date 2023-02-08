@@ -23,6 +23,7 @@ import { ManagementComponent } from './management/management.component';
 import { ManagementFormComponent } from './management/management-form/management-form.component';
 import { ManagementEditItemComponent } from './management/management-edit-item/management-edit-item.component';
 import { ManagementAddItemComponent } from './management/management-add-item/management-add-item.component';
+import { AuthComponent } from './Auth/auth/auth.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { ManagementAddItemComponent } from './management/management-add-item/man
     ManagementFormComponent,
     ManagementEditItemComponent,
     ManagementAddItemComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
