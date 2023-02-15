@@ -7,7 +7,9 @@ import { Item } from './item';
   providedIn: 'root',
 })
 export class ItemService {
-  private url = 'http://localhost:5200';
+  // private url = 'http://localhost:5200';
+  private url = 'http://www.pushinrope.co.uk:5200';
+
   private singleItem$: Subject<Item> = new Subject();
   private items$: Subject<Item[]> = new Subject();
   private searchItems$: Subject<Item[]> = new Subject();
