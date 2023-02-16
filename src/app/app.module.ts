@@ -24,6 +24,8 @@ import { ManagementFormComponent } from './management/management-form/management
 import { ManagementEditItemComponent } from './management/management-edit-item/management-edit-item.component';
 import { ManagementAddItemComponent } from './management/management-add-item/management-add-item.component';
 import { AuthComponent } from './Auth/auth/auth.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 @NgModule({
@@ -46,6 +48,7 @@ import { AuthComponent } from './Auth/auth/auth.component';
     ManagementEditItemComponent,
     ManagementAddItemComponent,
     AuthComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -55,6 +58,8 @@ import { AuthComponent } from './Auth/auth/auth.component';
     CarouselModule,
     FormsModule,
     BrowserAnimationsModule,
+    NgbModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent],
