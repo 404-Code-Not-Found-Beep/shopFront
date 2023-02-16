@@ -1,7 +1,7 @@
-<header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white" >
-    <div class="container-fluid" ngbDropdown>
-      <button ngbDropdownToggle
+<header class="mb-md-5 pb-5">
+        <nav ngbDropdown class="navbar navbar-expand-lg navbar-light bg-white" >
+    <div class="container-fluid" >
+      <button
         class="navbar-toggler"
         type="button"
         data-mdb-toggle="collapse"
@@ -9,20 +9,21 @@
         aria-controls="navbarExample01"
         aria-expanded="false"
         aria-label="Toggle navigation"
-        
+        ngbDropdownToggle
+        (click)="isNavbarClosed = false"
       >
         <!-- <i class="fas fa-bars"></i> -->
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarExample01" ngbDropdownMenu>
+      <div class="collapse navbar-collapse col-12 start-0" id="navbarExample01" ngbDropdownMenu [ngbCollapse]="isNavbarClosed" >
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li><a class="nav-link" routerLink="/">Home</a></li>
+          <li><a class="nav-link" routerLink="/" (click)="isNavbarClosed = true">Home</a></li>
 
           <li routerLinkActive="active">
-            <a class="nav-link" routerLink="/items">Items</a>
+            <a class="nav-link" routerLink="/items" (click)="isNavbarClosed = true">Items</a>
           </li>
           <li routerLinkActive="active">
-            <a class="nav-link" routerLink="/checkout" data-cy="checkoutButton"
+            <a class="nav-link" routerLink="/checkout" data-cy="checkoutButton" (click)="isNavbarClosed = true"
               >Checkout</a
             >
           </li>
@@ -31,8 +32,9 @@
               class="nav-link"
               routerLink="/auth"
               data-cy="authButton"
-              *ngIf="authenticated"
-              >Login</a
+              *ngIf="authenticated" (click)="isNavbarClosed = true"
+              >Login
+              </a
             >
           </li>
           <li routerLinkActive="active">
@@ -40,7 +42,7 @@
               class="nav-link"
               routerLink="/auth"
               data-cy="authButton"
-              *ngIf="!authenticated"
+              *ngIf="!authenticated" (click)="isNavbarClosed = true"
               >Signup</a
             >
           </li>
@@ -48,7 +50,8 @@
             <a
               class="nav-link"
               routerLink="/manager-portal"
-              data-cy="managerPortalButton"
+              *ngIf="authenticated"
+              data-cy="managerPortalButton" (click)="isNavbarClosed = true"
               >Manager Portal</a
             >
           </li>
@@ -58,11 +61,12 @@
       </div>
     </div>
   </nav>
-  <div class="col-6">
+  <div class="m-lg-5" style="color: white;"> .</div>
+  <div class="col-6 m-1 " >
     <app-search-bar class="m-2"></app-search-bar>
     <div class="col-12">
       <button
-        class="btn btn-primary m-1 position-absolute top-1 end-25"
+        class="btn btn-primary m-2 position-absolute top-1 end-25"
         id="backButton"
         (click)="backButton()"
       >

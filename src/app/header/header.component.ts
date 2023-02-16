@@ -10,6 +10,7 @@ import { AuthService } from '../Auth/auth-service.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   authenticated : boolean = false;
+  isNavbarClosed = false;
   constructor(private location: Location, private authService : AuthService) {}
 
   ngOnInit(): void {
